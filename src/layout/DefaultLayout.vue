@@ -2,15 +2,17 @@
   <div class="wrapper">
     <NavbarComponent />
     <slot />
+    <BottomTabsComponent />
   </div>
 </template>
 
 <script>
 import NavbarComponent from "@/components/NavbarComponent.vue";
+import BottomTabsComponent from "@/components/BottomTabsComponent.vue";
 
 export default {
   name: "DefaultLayout",
-  components: { NavbarComponent },
+  components: { BottomTabsComponent, NavbarComponent },
 };
 </script>
 
