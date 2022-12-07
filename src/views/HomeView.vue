@@ -1,30 +1,40 @@
 <template>
-  <h1>Hello World</h1>
-  <button @click="handleShowUser">show user</button>
-  <button @click="handleSignOut">sign out</button>
+  <DefaultLayout>
+    <HeaderComponent text="All meals" />
+    <div v-if="recipes.length > 0">
+      <FoodCardComponent
+        v-for="recipe in recipes"
+        :key="recipe"
+        :recipe="recipe"
+      />
+    </div>
+    <span v-else>Loading...</span>
+  </DefaultLayout>
 </template>
 
 <script>
-import { mapActions, mapStores } from "pinia";
-import { useAuthStore } from "@/store/useAuthStore";
-import { auth } from "@/firebase";
+import DefaultLayout from "@/layout/DefaultLayout.vue";
+import axios from "axios";
+import FoodCardComponent from "@/components/FoodCardComponent.vue";
+import HeaderComponent from "@/components/HeaderComponent.vue";
 
 export default {
-  computed: {
-    ...mapStores(useAuthStore),
+  components: { HeaderComponent, FoodCardComponent, DefaultLayout },
+  data() {
+    return {
+      recipes: [],
+    };
   },
-  methods: {
-    ...mapActions(useAuthStore, ["logout"]),
-    handleShowUser() {
-      console.log(auth.currentUser);
-    },
-    async handleSignOut() {
-      try {
-        await this.logout();
-      } catch (e) {
-        console.log(e.message);
-      }
-    },
+  async mounted() {
+    try {
+      const response = await axios.get(
+        "https://mealtime-5d860-default-rtdb.firebaseio.com/recipes.json"
+      );
+
+      this.recipes = Object.values(response.data);
+    } catch (e) {
+      console.log(e.message);
+    }
   },
 };
 </script>
