@@ -1,41 +1,37 @@
 <template>
   <AuthLayout>
     <HeaderComponent text="Register" />
-    <form class="form">
-      <label class="form__label">
+    <form class="auth">
+      <label class="auth__label">
         Full name *
         <input
           v-model="authCredentials.name"
-          class="form__input"
+          class="auth__input"
           type="email"
-          required
         />
       </label>
-      <label class="form__label">
-        Mail *
+      <label class="auth__label">
+        Email *
         <input
           v-model="authCredentials.mail"
-          class="form__input"
+          class="auth__input"
           type="email"
-          required
         />
       </label>
-      <label class="form__label">
+      <label class="auth__label">
         Password *
         <input
           v-model="authCredentials.password"
-          class="form__input"
+          class="auth__input"
           type="password"
-          required
         />
       </label>
-      <label class="form__label">
+      <label class="auth__label">
         Repeat password *
         <input
           v-model="authCredentials.repeatPassword"
-          class="form__input"
+          class="auth__input"
           type="password"
-          required
         />
       </label>
       <ButtonComponent
@@ -43,7 +39,7 @@
         text="Register"
         type="submit"
       />
-      <RouterLink class="form__login" to="/login">Login</RouterLink>
+      <RouterLink class="auth__login" to="/login">Login</RouterLink>
       <ErrorComponent :text="errorMessage" />
     </form>
   </AuthLayout>
@@ -75,6 +71,24 @@ export default {
   methods: {
     ...mapActions(useAuthStore, ["signup", "setErrorMessage"]),
     async handleSubmit() {
+      if (!this.authCredentials.name) {
+        this.setErrorMessage("Please enter your full name");
+        return;
+      }
+
+      if (!this.authCredentials.mail) {
+        this.setErrorMessage("Please enter your mail");
+        return;
+      }
+
+      if (
+        !this.authCredentials.password ||
+        !this.authCredentials.repeatPassword
+      ) {
+        this.setErrorMessage("Please enter password");
+        return;
+      }
+
       if (
         this.authCredentials.password !== this.authCredentials.repeatPassword
       ) {
@@ -94,7 +108,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.form {
+.auth {
   &__login {
     margin-top: 2rem;
     color: #434343;

@@ -1,34 +1,34 @@
 <template>
-  <DefaultLayout><slot></slot></DefaultLayout>
+  <div class="auth-wrapper">
+    <LogoComponent />
+    <slot></slot>
+  </div>
 </template>
 
 <script>
-import DefaultLayout from "@/layout/DefaultLayout.vue";
+import LogoComponent from "@/components/LogoComponent.vue";
 
 export default {
-  components: { DefaultLayout },
+  components: { LogoComponent },
 };
 </script>
 
 <style lang="scss">
-.form {
+.auth {
   display: flex;
   flex-direction: column;
   align-items: center;
 
+  &-wrapper {
+    padding: 1.5rem;
+  }
+
   &__label {
-    margin-bottom: 3rem;
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    font-size: 1.5rem;
+    @include label-styles;
   }
 
   &__input {
-    padding: 0 1rem;
-    margin-top: 0.5rem;
-    height: 3.5rem;
-    font-size: 1.6rem;
+    @include input-styles;
   }
 }
 </style>

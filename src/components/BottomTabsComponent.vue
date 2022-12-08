@@ -6,7 +6,7 @@
     <RouterLink to="/">
       <MagnifyingGlassIcon class="nav__icon" />
     </RouterLink>
-    <RouterLink to="/">
+    <RouterLink to="/add">
       <PlusIcon class="nav__icon" />
     </RouterLink>
     <RouterLink to="/">
@@ -41,6 +41,7 @@ export default {
   color: $orange-color;
 }
 .nav {
+  background-color: $white-color;
   padding: 1rem 2rem;
   position: fixed;
   bottom: 0;

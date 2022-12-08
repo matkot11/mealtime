@@ -1,22 +1,20 @@
 <template>
   <AuthLayout>
     <HeaderComponent text="Login" />
-    <form class="form">
-      <label class="form__label">
-        Mail
+    <form class="auth">
+      <label class="auth__label">
+        Email *
         <input
           v-model="authCredentials.mail"
-          placeholder="Mail"
-          class="form__input"
+          class="auth__input"
           type="email"
         />
       </label>
-      <label class="form__label">
-        Password
+      <label class="auth__label">
+        Password *
         <input
           v-model="authCredentials.password"
-          placeholder="Password"
-          class="form__input"
+          class="auth__input"
           type="password"
         />
       </label>
@@ -25,7 +23,7 @@
         text="Login"
         type="submit"
       />
-      <RouterLink class="form__register" to="/register">Register</RouterLink>
+      <RouterLink class="auth__register" to="/register">Register</RouterLink>
     </form>
     <ErrorComponent :text="errorMessage" />
   </AuthLayout>
@@ -53,8 +51,18 @@ export default {
     ...mapState(useAuthStore, ["errorMessage"]),
   },
   methods: {
-    ...mapActions(useAuthStore, ["login"]),
+    ...mapActions(useAuthStore, ["login", "setErrorMessage"]),
     async handleSubmit() {
+      if (!this.authCredentials.mail) {
+        this.setErrorMessage("Please enter mail");
+        return;
+      }
+
+      if (!this.authCredentials.password) {
+        this.setErrorMessage("Please enter password");
+        return;
+      }
+
       await this.login(
         this.authCredentials.mail,
         this.authCredentials.password
@@ -66,7 +74,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.form {
+.auth {
   &__register {
     margin-top: 2rem;
     color: #434343;

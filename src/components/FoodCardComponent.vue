@@ -4,9 +4,9 @@
     <div class="recipe__wrapper-right">
       <h3 class="recipe__title">{{ recipe.name }}</h3>
       <div class="recipe__wrapper-hash">
-        <span class="recipe__hash">#{{ recipe.hash.type }}</span>
-        <span class="recipe__hash">#{{ recipe.hash.diet }}</span>
-        <span class="recipe__hash">#{{ recipe.hash.difficulty }}</span>
+        <span class="recipe__hash">#{{ recipe.type }}</span>
+        <span class="recipe__hash">#{{ recipe.diet }}</span>
+        <span class="recipe__hash">#{{ recipe.difficulty }}</span>
       </div>
     </div>
   </div>
