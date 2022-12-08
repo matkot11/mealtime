@@ -18,6 +18,6 @@ export default {
 
 <style lang="scss" scoped>
 .wrapper {
-  padding: 1.5rem;
+  padding: 1.5rem 1.5rem 6rem 1.5rem;
 }
 </style>

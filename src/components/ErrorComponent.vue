@@ -16,6 +16,7 @@ export default {
 <style lang="scss" scoped>
 .error {
   margin-top: 2rem;
+  margin-bottom: 2rem;
   text-align: center;
   font-size: 1.4rem;
   color: #ed0000;
