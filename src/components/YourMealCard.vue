@@ -1,6 +1,6 @@
 <template>
   <div class="recipe">
-    <div class="recipe__wrapper-top">
+    <RouterLink :to="{ name: 'meal', params: { id: recipeId } }" class="recipe__wrapper-top">
       <img class="recipe__image" :src="recipe.image" :alt="recipe.name" />
       <div class="recipe__wrapper-right">
         <h3 class="recipe__title">{{ recipe.name }}</h3>
@@ -10,10 +10,10 @@
           <span class="recipe__hash">#{{ recipe.difficulty }}</span>
         </div>
       </div>
-    </div>
+    </RouterLink>
     <div class="recipe__wrapper-bottom">
-      <ButtonComponent @click="$emit('edit')" text="Edit" />
-      <ButtonComponent @click="$emit('delete')" text="Delete" />
+      <ButtonComponent @click.self="$emit('edit')" text="Edit" />
+      <ButtonComponent @click.self="$emit('delete')" text="Delete" />
     </div>
   </div>
 </template>
@@ -27,6 +27,16 @@ export default {
     recipe: {
       type: Object,
       required: true,
+    },
+    recipeId: {
+      type: String,
+      required: true,
+    },
+  },
+  methods: {
+    handleRedirect() {
+      console.log("dupsko");
+      this.$router.push({ name: "meal", params: { id: this.recipeId } });
     },
   },
 };

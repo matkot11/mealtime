@@ -7,6 +7,7 @@ import ProfileView from "@/views/ProfileView.vue";
 import AddView from "@/views/AddView.vue";
 import YourMealsView from "@/views/YourMealsView.vue";
 import EditView from "@/views/EditView.vue";
+import MealView from "@/views/MealView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -30,6 +31,14 @@ const router = createRouter({
       path: "/home",
       name: "home",
       component: HomeView,
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
+      path: "/meal/:id",
+      name: "meal",
+      component: MealView,
       meta: {
         requiresAuth: true,
       },

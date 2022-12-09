@@ -6,6 +6,9 @@
         v-for="recipe in recipes"
         :key="recipe"
         :recipe="recipe"
+        :recipe-id="
+          Object.keys(response).find((key) => response[key].id === recipe.id)
+        "
       />
     </div>
     <span v-else>Loading...</span>
@@ -23,6 +26,7 @@ export default {
   data() {
     return {
       recipes: [],
+      response: [],
     };
   },
   async mounted() {
@@ -32,6 +36,8 @@ export default {
       );
 
       this.recipes = Object.values(response.data);
+
+      this.response = response.data;
     } catch (e) {
       console.log(e.message);
     }
