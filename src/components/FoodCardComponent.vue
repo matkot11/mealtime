@@ -1,5 +1,5 @@
 <template>
-  <div class="recipe">
+  <RouterLink :to="{ name: 'meal', params: { id: recipeId } }" class="recipe">
     <img class="recipe__image" :src="recipe.image" :alt="recipe.name" />
     <div class="recipe__wrapper-right">
       <h3 class="recipe__title">{{ recipe.name }}</h3>
@@ -9,7 +9,7 @@
         <span class="recipe__hash">#{{ recipe.difficulty }}</span>
       </div>
     </div>
-  </div>
+  </RouterLink>
 </template>
 
 <script>
@@ -17,6 +17,10 @@ export default {
   props: {
     recipe: {
       type: Object,
+      required: true,
+    },
+    recipeId: {
+      type: String,
       required: true,
     },
   },

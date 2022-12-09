@@ -69,6 +69,7 @@ import ButtonComponent from "@/components/ButtonComponent.vue";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import ErrorComponent from "@/components/ErrorComponent.vue";
+import { auth } from "@/firebase";
 export default {
   data() {
     return {
@@ -126,6 +127,8 @@ export default {
           {
             ...this.addInputs,
             id,
+            user: auth.currentUser.uid,
+            userName: auth.currentUser.displayName,
           }
         );
       } catch (e) {

@@ -7,6 +7,9 @@
       v-for="recipe in recipes"
       :key="recipe.id"
       :recipe="recipe"
+      :recipe-id="
+        Object.keys(response).find((key) => response[key].id === recipe.id)
+      "
     />
   </DefaultLayout>
 </template>
