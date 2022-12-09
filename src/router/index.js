@@ -5,6 +5,8 @@ import RegisterView from "@/views/RegisterView.vue";
 import HomeView from "@/views/HomeView.vue";
 import ProfileView from "@/views/ProfileView.vue";
 import AddView from "@/views/AddView.vue";
+import YourMealsView from "@/views/YourMealsView.vue";
+import EditView from "@/views/EditView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -44,6 +46,22 @@ const router = createRouter({
       path: "/add",
       name: "add",
       component: AddView,
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
+      path: "/edit/:id",
+      name: "edit",
+      component: EditView,
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
+      path: "/profile/your-meals",
+      name: "yourMeals",
+      component: YourMealsView,
       meta: {
         requiresAuth: true,
       },
