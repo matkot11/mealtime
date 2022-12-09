@@ -3,7 +3,7 @@
     <RouterLink to="/home">
       <HomeIcon class="nav__icon" />
     </RouterLink>
-    <RouterLink to="/">
+    <RouterLink to="/search">
       <MagnifyingGlassIcon class="nav__icon" />
     </RouterLink>
     <RouterLink to="/add">
