@@ -9,7 +9,7 @@
     <RouterLink to="/add">
       <PlusIcon class="nav__icon" />
     </RouterLink>
-    <RouterLink to="/">
+    <RouterLink to="/like">
       <HeartIcon class="nav__icon" />
     </RouterLink>
     <RouterLink to="/profile">
@@ -50,6 +50,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  z-index: 1000;
 
   &__icon {
     width: 3.5rem;

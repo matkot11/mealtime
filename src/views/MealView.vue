@@ -10,7 +10,16 @@
           ><span class="meal__hash"># {{ recipe.difficulty }}</span>
         </div>
       </div>
-      <ButtonComponent text="Add to favorites" />
+      <ButtonComponent
+        v-if="!recipe.likes?.includes(userId)"
+        @click="handleLikeMeal"
+        text="Add to favorites"
+      />
+      <ButtonComponent
+        v-else
+        text="Remove from favorites"
+        @click="handleRemoveLike"
+      />
       <div class="meal__wrapper-ingredients">
         <h3 class="meal__heading">Ingredients:</h3>
         <ul class="meal__list">
@@ -28,6 +37,7 @@
         <p class="meal__instruction">{{ recipe.instruction }}</p>
       </div>
       <span class="meal__created-by">Created by: {{ recipe.userName }}</span>
+      <ErrorComponent :text="errorMessage" />
     </div>
   </DefaultLayout>
 </template>
@@ -37,15 +47,66 @@ import DefaultLayout from "@/layout/DefaultLayout.vue";
 import axios from "axios";
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import ButtonComponent from "@/components/ButtonComponent.vue";
+import { auth } from "@/firebase";
+import ErrorComponent from "@/components/ErrorComponent.vue";
+import { onAuthStateChanged } from "firebase/auth";
 
 export default {
   data() {
     return {
       recipe: {},
+      errorMessage: "",
+      userId: null,
     };
+  },
+  methods: {
+    async handleLikeMeal() {
+      const userId = auth.currentUser.uid;
+      const recipeId = this.$route.params.id;
+
+      try {
+        await axios.put(
+          `https://mealtime-5d860-default-rtdb.firebaseio.com/recipes/${recipeId}.json`,
+          {
+            ...this.recipe,
+            likes: this.recipe.likes
+              ? [...this.recipe.likes, userId]
+              : [userId],
+          }
+        );
+
+        this.$router.go();
+      } catch (e) {
+        this.errorMessage = e.message;
+      }
+    },
+    async handleRemoveLike() {
+      const userId = auth.currentUser.uid;
+      const recipeId = this.$route.params.id;
+
+      try {
+        await axios.put(
+          `https://mealtime-5d860-default-rtdb.firebaseio.com/recipes/${recipeId}.json`,
+          {
+            ...this.recipe,
+            likes: this.recipe.likes.filter((like) => like !== userId),
+          }
+        );
+
+        this.$router.go();
+      } catch (e) {
+        this.errorMessage = e.message;
+      }
+    },
   },
   async mounted() {
     const recipeId = this.$route.params.id;
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        this.userId = user.uid;
+      }
+    });
 
     try {
       const response = await axios.get(
@@ -54,10 +115,15 @@ export default {
 
       this.recipe = response.data;
     } catch (e) {
-      console.log(e);
+      this.errorMessage = e.message;
     }
   },
-  components: { ButtonComponent, HeaderComponent, DefaultLayout },
+  components: {
+    ErrorComponent,
+    ButtonComponent,
+    HeaderComponent,
+    DefaultLayout,
+  },
 };
 </script>
 

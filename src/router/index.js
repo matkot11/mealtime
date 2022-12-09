@@ -8,6 +8,7 @@ import AddView from "@/views/AddView.vue";
 import YourMealsView from "@/views/YourMealsView.vue";
 import EditView from "@/views/EditView.vue";
 import MealView from "@/views/MealView.vue";
+import LikedMealsView from "@/views/LikedMealsView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -39,6 +40,14 @@ const router = createRouter({
       path: "/meal/:id",
       name: "meal",
       component: MealView,
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
+      path: "/like",
+      name: "like",
+      component: LikedMealsView,
       meta: {
         requiresAuth: true,
       },
