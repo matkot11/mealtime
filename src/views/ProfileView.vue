@@ -5,7 +5,9 @@
         Hi,<span class="profile__heading-name">{{ name }}</span>
       </h3>
       <div class="profile__buttons">
-        <RouterLink to="/" class="profile__button">Your meals</RouterLink>
+        <RouterLink to="/profile/your-meals" class="profile__button"
+          >Your meals</RouterLink
+        >
         <button class="profile__button" @click="handleShowUser">
           Show user
         </button>
@@ -58,12 +60,11 @@ export default {
             instruction:
               "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
             ingredients: ["onion", "pasta", "carrot", "olive oil"],
-            hash: {
-              type: "Dinner",
-              diet: "Vegetarian",
-              difficulty: "Beginner",
-            },
+            type: "Dinner",
+            diet: "Vegetarian",
+            difficulty: "Beginner",
             user: "5ZAVDBooJLQPKOCXIQhGZmULgGE3",
+            id: 1,
           }
         );
         console.log(response);
