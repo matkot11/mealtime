@@ -1,8 +1,20 @@
 <template>
   <DefaultLayout>
-    <button @click="handleShowUser">show user</button>
-    <button @click="handleWriteData">Read data</button>
-    <button @click="handleSignOut">sign out</button>
+    <div class="profile">
+      <h3 class="profile__heading">
+        Hi,<span class="profile__heading-name">{{ name }}</span>
+      </h3>
+      <div class="profile__buttons">
+        <RouterLink to="/" class="profile__button">Your meals</RouterLink>
+        <button class="profile__button" @click="handleShowUser">
+          Show user
+        </button>
+        <button class="profile__button" @click="handleWriteData">
+          Write data
+        </button>
+        <button class="profile__button" @click="handleSignOut">Logout</button>
+      </div>
+    </div>
   </DefaultLayout>
 </template>
 
@@ -12,9 +24,21 @@ import { useAuthStore } from "@/store/useAuthStore";
 import { auth } from "@/firebase";
 import axios from "axios";
 import DefaultLayout from "@/layout/DefaultLayout.vue";
+import { onAuthStateChanged } from "firebase/auth";
 
 export default {
-  components: { DefaultLayout },
+  data() {
+    return {
+      name: "",
+    };
+  },
+  mounted() {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        this.name = user.displayName.split(" ")[0];
+      }
+    });
+  },
   computed: {
     ...mapStores(useAuthStore),
   },
@@ -55,7 +79,37 @@ export default {
       }
     },
   },
+  components: { DefaultLayout },
 };
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__heading {
+    margin: 8rem 0;
+    font-size: 2.5rem;
+    font-weight: $semiBold-weight;
+
+    &-name {
+      margin-left: 0.7rem;
+      color: $orange-color;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__button {
+    margin: 0.7rem 0;
+    font-size: 2rem;
+    font-weight: $semiBold-weight;
+  }
+}
+</style>
