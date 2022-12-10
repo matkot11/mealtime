@@ -1,0 +1,6 @@
+{
+  "appId": "com.mealtime.app",
+  "appName": "mealtime",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}
