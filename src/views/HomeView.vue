@@ -11,7 +11,7 @@
         "
       />
     </div>
-    <span v-else>Loading...</span>
+    <span class="home__no-meals" v-else>No meals</span>
   </DefaultLayout>
 </template>
 
@@ -44,3 +44,10 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.home__no-meals {
+  display: flex;
+  justify-content: center;
+}
+</style>

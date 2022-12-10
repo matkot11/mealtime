@@ -3,7 +3,7 @@
     <HeaderComponent text="Add meal" />
     <form class="form">
       <label class="form__label">
-        Name *
+        Meal name *
         <input v-model="addInputs.name" type="text" class="form__input" />
       </label>
       <label class="form__label">

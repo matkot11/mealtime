@@ -155,8 +155,10 @@ export default {
   }
 
   &__image {
-    width: 15rem;
+    width: 12rem;
+    height: 12rem;
     border-radius: 50%;
+    object-fit: cover;
   }
 
   &__hash {
@@ -186,6 +188,7 @@ export default {
 
   &__instruction {
     margin-left: 2rem;
+    word-break: break-word;
   }
 
   &__created-by {

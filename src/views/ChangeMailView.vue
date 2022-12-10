@@ -55,6 +55,7 @@ export default {
       }
 
       await this.changeMail(this.inputValues.mail);
+      this.$router.back();
     },
   },
   components: {

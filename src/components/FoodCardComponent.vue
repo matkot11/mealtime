@@ -49,6 +49,7 @@ export default {
     width: 9rem;
     height: 9rem;
     border-radius: 50%;
+    object-fit: cover;
   }
 
   &__title {

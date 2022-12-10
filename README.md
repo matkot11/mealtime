@@ -1,19 +1,21 @@
 # mealtime
 
-This template should help get you started developing with Vue 3 in Vite.
+##### This web app shows idea of the Mealtime app which will be created at the end of the year
 
-## Recommended IDE Setup
+## Link to website
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+#### [mealtime-about](https://mealtime-kocik.netlify.app/)
 
 ## Project Setup
 
 ```sh
 npm install
+```
+
+### Run Android app
+
+```sh
+npx cap run android
 ```
 
 ### Compile and Hot-Reload for Development
@@ -28,13 +30,7 @@ npm run dev
 npm run build
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
+### Lint with Eslint
 
 ```sh
 npm run lint
