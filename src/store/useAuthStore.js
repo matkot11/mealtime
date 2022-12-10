@@ -4,6 +4,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
+  updateEmail,
 } from "firebase/auth";
 import { auth } from "@/firebase";
 
@@ -38,6 +39,13 @@ export const useAuthStore = defineStore("auth", {
     async logout() {
       try {
         await signOut(auth);
+      } catch (e) {
+        this.errorMessage = e.message;
+      }
+    },
+    async changeMail(mail) {
+      try {
+        await updateEmail(auth.currentUser, mail);
       } catch (e) {
         this.errorMessage = e.message;
       }
