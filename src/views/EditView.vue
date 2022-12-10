@@ -3,7 +3,7 @@
     <HeaderComponent text="Edit meal" />
     <form class="form">
       <label class="form__label">
-        Name *
+        Meal name *
         <input v-model="addInputs.name" type="text" class="form__input" />
       </label>
       <label class="form__label">
@@ -71,7 +71,6 @@ import DefaultLayout from "@/layout/DefaultLayout.vue";
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import ButtonComponent from "@/components/ButtonComponent.vue";
 import axios from "axios";
-import { v4 as uuidv4 } from "uuid";
 import ErrorComponent from "@/components/ErrorComponent.vue";
 export default {
   data() {
