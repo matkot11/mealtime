@@ -10,6 +10,7 @@ import EditView from "@/views/EditView.vue";
 import MealView from "@/views/MealView.vue";
 import LikedMealsView from "@/views/LikedMealsView.vue";
 import SearchView from "@/views/SearchView.vue";
+import ChangeMailView from "@/views/ChangeMailView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -62,14 +63,6 @@ const router = createRouter({
       },
     },
     {
-      path: "/profile",
-      name: "profile",
-      component: ProfileView,
-      meta: {
-        requiresAuth: true,
-      },
-    },
-    {
       path: "/add",
       name: "add",
       component: AddView,
@@ -86,9 +79,25 @@ const router = createRouter({
       },
     },
     {
+      path: "/profile",
+      name: "profile",
+      component: ProfileView,
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
       path: "/profile/your-meals",
       name: "yourMeals",
       component: YourMealsView,
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
+      path: "/profile/change-mail",
+      name: "changeMail",
+      component: ChangeMailView,
       meta: {
         requiresAuth: true,
       },
